@@ -12,7 +12,6 @@ from src.validation import validate_metrics
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--refresh", action="store_true", help="Re-download raw SEC facts")
-    parser.add_argument("--years", nargs="+", type=int, default=[2023, 2024, 2025])
     args = parser.parse_args()
 
     if not os.getenv("SEC_USER_AGENT"):
@@ -20,9 +19,10 @@ def main() -> None:
 
     PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
     frames = []
+    periods = [(2023, "FY"), (2024, "FY"), (2025, "FY"), (2025, "Q1"), (2025, "Q2"), (2026, "Q1"), (2026, "Q2")]
     for company, details in COMPANIES.items():
         facts = fetch_company_facts(details["cik"], company, refresh=args.refresh)
-        frames.append(normalize_company(company, details["ticker"], facts, args.years))
+        frames.append(normalize_company(company, details["ticker"], facts, periods))
 
     long_df = __import__("pandas").concat(frames, ignore_index=True)
     wide_df = pivot_metrics(long_df)
