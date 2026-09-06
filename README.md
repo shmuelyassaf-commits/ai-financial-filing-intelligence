@@ -12,7 +12,7 @@ The numerical layer is deterministic and traceable: every normalized metric reta
 
 ## Metrics in the first release
 
-Revenue, operating income, net income, operating cash flow, capex, free cash flow, cash and equivalents, long-term debt, operating margin, and net margin.
+Revenue, operating income, net income, operating cash flow, capex, free cash flow, cash and equivalents, long-term debt, operating margin, and net margin. The dashboard includes FY 2023–2025 and Q1/Q2 2025–2026; quarterly flows are explicitly displayed as year-to-date figures so that the comparison is consistent. 2026 is not a full-year result.
 
 ## Run locally or in GitHub Codespaces
 
